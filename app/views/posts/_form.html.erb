@@ -1,0 +1,57 @@
+
+<%= form_with model: post, local: true do |form| %>
+
+  <div class="form-group">
+    <%= form.label 'Property Status' %><br />
+    <%= form.text_field :property_status, autofocus: true, autocomplete: "name", :class=> "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Owner Name' %><br />
+    <%= form.text_field :owner_name, autofocus: true, autocomplete: "name", :class=> "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Location' %><br />
+    <%= form.text_field :location, autofocus: true, autocomplete: "name", :class=> "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Size' %><br />
+    <%= form.text_field :size, autofocus: true, autocomplete: "name", :class=> "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Price' %><br />
+    <%= form.text_field :price, autofocus: true, autocomplete: "name", :class=> "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Description' %><br />
+    <%= form.text_field :description, autofocus: true, autocomplete: "name", :class=> "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Phone Number' %><br />
+    <%= form.text_field :phone, autofocus: true, autocomplete: "name", :class=> "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Email Id' %><br />
+    <%= form.text_field :email, autofocus: true, autocomplete: "name", :class=> "form-control"%><br><br>
+  </div>
+
+
+
+  
+  <div class="form-group">
+    
+    <% form.label :image %>
+    <%= form.file_field :image, multiple: true %><br><br>
+  </div>
+
+ 
+  <div class="form-group">
+    <%= form.submit  %>
+  </div>
+<% end %>

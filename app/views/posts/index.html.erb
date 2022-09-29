@@ -1,0 +1,25 @@
+<h1>Property Posts</h1>
+<ul>
+  <% @posts.each do |p| %>
+
+    <li>
+      <%= "posted by : "%> <strong><%= link_to p.user.first_name, p %></strong><br>
+
+      <%= "For"%> <strong><%= link_to p.property_status, p %></strong><br>
+      <%= "Owner"%> <strong><%= link_to p.owner_name, p %></strong>
+      <%= "Description"%> <strong><%= link_to p.description, p %></strong><br>
+      
+      <%# image_tag (url_for(p.image.variant)) %>
+
+
+    </li><br>
+    
+    
+    
+  <% end %>
+</ul>
+
+<% if current_user.role == "owner"%>
+  <%= link_to "Create Post " , new_post_path %>
+<% end %>
+
