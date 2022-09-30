@@ -1,0 +1,11 @@
+<nav class="navbar navbar-dark bg-dark"> 
+  <%= link_to "Home",posts_path%>
+  <%= link_to "Contact",contact_path%>
+  <%= link_to "About us",about_path%>
+  <% if current_user.present? %>
+  <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+  <% else %>
+  <%= link_to "SingUp",new_user_registration_path%>
+  <% end %>
+</nav>
+
