@@ -1,20 +1,18 @@
 
-<% if current_user.role   %>
-  <p> Name : <strong><%=  current_user.role  %></strong> </p>
-  <%= button_to "Logout", destroy_user_session_path, method: :delete %>
-
+<% if current_user.role == "admin" %>
+  <h1>Admin's Dashboard</h1>
+    <h3>Roles</h3>
+    <ul>
+      <% @admins.each do |a| %>
+        <li>
+          <%= a.first_name %> - <strong><%= a.role %></strong>
+        </li>
+      <% end %>
+    </ul>
+    <%= render "posts/post", post: @posts %>
+  
+           
 <% else %>
-  <p> You are Succesfully Not Login  </p>
-  <%= link_to 'Sign Up', new_user_registration_path  %>
-  <%= link_to 'Login', new_user_session_path  %>  
+  <h1>Yor are Not Admin</h1>
+  <h4>You can't aceess this Page</h4>
 <% end %>
-<h1>Admins Dashboard</h1>
-
-<h3>Roles</h3>
-<ul>
-  <% @admins.each do |a| %>
-    <li>
-      <%=  a.first_name  %> - <strong><%= a.role %></strong>
-    </li>
-  <% end %>
-</ul>

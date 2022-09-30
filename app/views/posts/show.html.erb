@@ -1,30 +1,36 @@
 <h1>Owner Details</h1> 
 
-<h4>Property status :   <%= @post.property_status %></h4>
+  <h4>Property status :   <%= @post.property_status %></h4>
 
   <p><strong>Owner Name : </strong><%= @post.owner_name %></p>
   <p>Location : <%= @post.location %></p>
   <p>Price : <%= @post.price %></p>
   <p>Size : <%= @post.size %></p>
   <p>Description : <%= @post.description %></p>
-  
-  <% if current_user.role == "owner" || current_user.role == "admin" %>
-     <p>Email id : <%= @post.email %></p>
-     <p>Phone number : <%= @post.phone %></p>
+  <%if @post.image.persisted? %>
+    <%= image_tag @post.image %>
+  <%end%>
+  <% if @post.user_id == current_user.id || current_user.role == "admin" %>
+    <p>Email id : <%= @post.email %></p>
+    <p>Phone number : <%= @post.phone %></p>
+    
+  <% end %>
 
 <%end%>
 <%= image_tag(url_for(@post.image.variant)) %>
 <% if current_user.role == "owner" || %>
   <ul>
 
+  <% if @post.user_id == current_user.id || current_user.role == "admin" %>
+    <ul>
       <li><%= link_to "Edit", edit_post_path(@post) %></li>
-      <li><%= link_to "Destroy", post_path(@post), data: {
-                        turbo_method: :delete,
-                        turbo_confirm: "Are you sure?"
-                      } %>
-      
-      </li>
-  </ul>
-<%end%>
+        <li>
+          <%= button_to "Destroy Post", post_path(@post), method: :delete %>
+        </li>
+    </ul>
+  <% end %>
+ 
+  <h1>Post Creater </h1> 
 
+  <p>Creater Name : <%= @post.user.first_name %> <%= @post.user.last_name %> </p>
 
