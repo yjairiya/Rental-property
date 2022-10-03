@@ -9,9 +9,11 @@
      <h3> <%= "For" %> <strong><%= link_to p.property_status, p %></strong><br></h3>
       <%= "Owner" %> <strong><%= link_to p.owner_name, p %></strong>
       <%= "Description" %> <strong><%= link_to p.description, p %></strong><br>
-      <% if p.image.persisted? %>
-        <%= image_tag(p.image) %><br>
-      <%end%>
+      <% if p.images.attached? %>
+          <% p.images.each do |multiimages| %>
+            <%= image_tag(multiimages,  :size => "260x180") %>
+          <% end %>
+      <%end%><br>
       <%= "posted by : " %> <strong><%= link_to p.user.first_name, p %></strong><br>
       <%= "Upload date : " %> <strong><%= link_to p.created_at, p %></strong><br>
     </li><br>
