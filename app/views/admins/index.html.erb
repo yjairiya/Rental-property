@@ -1,4 +1,3 @@
-
 <% if current_user.role == "admin" %>
   <h1>Admin's Dashboard</h1>
     <h3>Roles</h3>
@@ -9,9 +8,7 @@
         </li>
       <% end %>
     </ul>
-    <%= render "posts/post", post: @posts %>
-  
-           
+    <%= render "posts/post", post: @posts %>        
 <% else %>
   <h1>Yor are Not Admin</h1>
   <h4>You can't aceess this Page</h4>

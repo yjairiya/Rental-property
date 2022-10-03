@@ -1,4 +1,8 @@
 <h1>Property Posts</h1>
+<% if current_user.role == "owner" || current_user.role == "admin" %>
+<%= "Create a New Post: " %>
+  <%= link_to "<button>Create Now</button>".html_safe, new_post_path%>
+<% end %>
 <ul>
   <% @posts.each do |p| %>
     <li>
@@ -10,12 +14,6 @@
       <%end%>
       <%= "posted by : " %> <strong><%= link_to p.user.first_name, p %></strong><br>
       <%= "Upload date : " %> <strong><%= link_to p.created_at, p %></strong><br>
-      
-
     </li><br>
   <% end %>
 </ul>
-
-<% if current_user.role == "owner" || current_user.role == "admin" %>
-  <%= link_to "Create Post ", new_post_path %>
-<% end %>

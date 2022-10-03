@@ -1,7 +1,5 @@
 <h1>Owner Details</h1> 
-
   <h4>Property status :   <%= @post.property_status %></h4>
-
   <p><strong>Owner Name : </strong><%= @post.owner_name %></p>
   <p>Location : <%= @post.location %></p>
   <p>Price : <%= @post.price %></p>
@@ -13,14 +11,7 @@
   <% if @post.user_id == current_user.id || current_user.role == "admin" %>
     <p>Email id : <%= @post.email %></p>
     <p>Phone number : <%= @post.phone %></p>
-    
   <% end %>
-
-<%end%>
-<%= image_tag(url_for(@post.image.variant)) %>
-<% if current_user.role == "owner" || %>
-  <ul>
-
   <% if @post.user_id == current_user.id || current_user.role == "admin" %>
     <ul>
       <li><%= link_to "Edit", edit_post_path(@post) %></li>
@@ -29,8 +20,5 @@
         </li>
     </ul>
   <% end %>
- 
-  <h1>Post Creater </h1> 
-
-  <p>Creater Name : <%= @post.user.first_name %> <%= @post.user.last_name %> </p>
-
+<h1>Post Creater </h1> 
+<p>Creater Name : <%= @post.user.first_name %> <%= @post.user.last_name %> </p>

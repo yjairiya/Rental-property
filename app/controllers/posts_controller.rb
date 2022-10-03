@@ -64,3 +64,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:property_status, :owner_name, :location, :size, :price, :description, :phone, :email, :image )
   end
 end
+# bin/rails g model AddImagesToPost images:attachments status:string
