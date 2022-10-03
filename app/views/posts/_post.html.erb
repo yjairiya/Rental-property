@@ -7,7 +7,7 @@
   <% @posts.each do |p| %>
     <li>
      <h3> <%= "For" %> <strong><%= link_to p.property_status, p %></strong><br></h3>
-      <%= "Owner" %> <strong><%= link_to p.owner_name, p %></strong>
+      <%= "Owner" %> <strong><%= link_to p.owner_name, p %></strong><br>
       <%= "Description" %> <strong><%= link_to p.description, p %></strong><br>
       <% if p.image.persisted? %>
         <%= image_tag(p.image) %><br>
