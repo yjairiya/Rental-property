@@ -17,5 +17,31 @@
       <%= "posted by : " %> <strong><%= link_to p.user.first_name, p %></strong><br>
       <%= "Upload date : " %> <strong><%= link_to p.created_at, p %></strong><br>
     </li><br>
+    <% if current_user.role == "user" %>
+      <%= link_to "<button>Contact</button>".html_safe%>
+      <%= link_to "<button>Cancel</button>".html_safe  %><br>
+    <% end %><br>
   <% end %>
+     
 </ul>
+<% if current_user.role == "owner" || current_user.role == "admin" %>
+  <h1>My Property Section</h1>
+  <% if @mypost.present? %>
+    <ul>
+      <% @mypost.each do |p| %>     
+        <li>
+          <h3> <%= "For" %> <strong><%= link_to p.property_status, p %></strong><br></h3>
+          <%= "Owner" %> <strong><%= link_to p.owner_name, p %></strong><br>
+          <%= "Description" %> <strong><%= link_to p.description, p %></strong><br>
+        
+          <%= "posted by : " %> <strong><%= link_to p.user.first_name, p %></strong><br>
+          <%= "Upload date : " %> <strong><%= link_to p.created_at, p %></strong><br>
+        </li><br>
+        
+      <% end %>
+    </ul>
+  <% else %>
+    <h5> ----------------<strong>You have no any Property Post</strong>-------------------<br></h5>
+    <% end %>
+
+<% end %>

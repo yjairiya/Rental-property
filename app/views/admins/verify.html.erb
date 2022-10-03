@@ -1,0 +1,15 @@
+<% if current_user.role == "admin" %>
+  <h1>Property Post Status</h1>
+      <ul>
+      <% @posts.each do |a| %>
+        <li>
+          <%= link_to a.status,a  %> - <strong><% %></strong><br>
+          <%= link_to a.owner_name,a  %> - <strong><% %></strong><br>
+        
+          </li>
+      <% end %>
+    </ul>
+<% else %>
+  <h1>Yor are Not Admin</h1>  
+  <h4>You can't aceess this Page</h4>
+<% end %>

@@ -3,8 +3,9 @@ class PostsController < ApplicationController
   # before_action :post_owner, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all.order(created_at: :asc)
+    @posts = Post.approved.order(created_at: :asc)
     # @image = Post.all.with_attached_imeges
+    @mypost = current_user.posts.all
   end
 
   def show
@@ -19,10 +20,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    # @post = user.status = "false" 
     if @post.save
       redirect_to @post
     else
-      # puts @post.errors
       render "new"
     end
   end
@@ -49,6 +50,20 @@ class PostsController < ApplicationController
       redirect_to root_path
     else
       render :show
+    end
+  end
+  def post_approved
+    @post = Post.find(params[:id])
+    @post.status = "approved"
+    if @post.update
+      redirect_to @post      
+    end
+  end
+  def post_rejected
+    @post = Post.find(params[:id])
+    @post.status = "rejected"
+    if @post.update
+      redirect_to @post      
     end
   end
 

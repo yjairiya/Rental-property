@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 
   get '/about', to: "posts#about" 
   get '/contact', to: "posts#contact"
+  patch '/approved_post/:id', to: "posts#post_approved"
+  patch '/rejected_post/:id', to: "posts#post_approved"
+  get '/admins', to: "admins#verify"
+
+
   # devise_for :users, controllers: {
   #   sessions: 'users/sessions'
   # }
