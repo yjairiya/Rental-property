@@ -9,9 +9,7 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.string :description,             null: false, default: ""
       t.string :phone,                   null: false, default: ""
       t.string :email,                   null: false, default: ""
-      
       t.references :user,                null: false, foreign_key: true
-      
 
       t.timestamps
     end

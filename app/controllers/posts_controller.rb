@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   # post.image.attach(params[:post][:image])
-  # before_action :post_owner, only: [:edit, :update, :destroy]
+  before_action :find_post, only: [:show, :edit, :update, :destroy, :approve_post, :reject_post]
 
   def index
-    @posts = Post.all.order(created_at: :asc)
+    @posts = Post.approved.order(created_at: :asc)
     # @image = Post.all.with_attached_imeges
   end
 
@@ -28,12 +28,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    # @post = current_user.posts.find(params[:id])
-    @post = Post.find(params[:id])
     @post.user = current_user
     if @post.update(post_params)
       redirect_to root_path
@@ -43,7 +40,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.user = current_user
     if @post.destroy
       redirect_to root_path
@@ -52,16 +48,21 @@ class PostsController < ApplicationController
     end
   end
 
-  # private
-  #  def authorize_user
-  #    unless @post.user == current_user
-  #      redirect_to items_path, error: 'You are not authorized'
-  #    end
-  #  end
+  def approve_post
+    @post.update!(status: 1)
+  end
+
+  def reject_post
+    @post.update!(status: 2)
+  end
   private
 
+  def find_post
+    @post = Post.find(params[:id])
+  end
+
   def post_params
-    params.require(:post).permit(:property_status, :owner_name, :location, :size, :price, :description, :phone, :email, images: [] )
+    params.require(:post).permit(:property_status, :owner_name, :location, :size, :price, :description, :phone, :email, images: [],status: )
   end
 end
 # bin/rails g model AddImagesToPost images:attachments status:string

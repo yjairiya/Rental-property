@@ -4,7 +4,7 @@
   <%= link_to "<button>Create Now</button>".html_safe, new_post_path%>
 <% end %>
 <ul>
-  <% @posts.each do |p| %>
+  <% post.each do |p| %>
     <li>
      <h3> <%= "For" %> <strong><%= link_to p.property_status, p %></strong><br></h3>
       <%= "Owner" %> <strong><%= link_to p.owner_name, p %></strong><br>
@@ -17,5 +17,11 @@
       <%= "posted by : " %> <strong><%= link_to p.user.first_name, p %></strong><br>
       <%= "Upload date : " %> <strong><%= link_to p.created_at, p %></strong><br>
     </li><br>
+    <% if current_user.role ==  "admin" %>
+      <%= button_to "reject", reject_post_post_path(p.id), { :method => :put } %>
+      <%= button_to "approved",approve_post_post_path(p.id), { :method => :put } %>
+    <% else %>
+      <% %>
+    <%end%>
   <% end %>
 </ul>
