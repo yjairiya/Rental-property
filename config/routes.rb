@@ -8,8 +8,14 @@ Rails.application.routes.draw do
     resources :users
     root to: "roles#index"
   end
+
   devise_for :users
-  resources :posts
+  resources :posts do
+    member do
+      put :reject_post
+      put :approve_post
+    end
+  end
   resources :users
 
   get '/about', to: "posts#about" 
@@ -22,6 +28,5 @@ Rails.application.routes.draw do
   # devise_for :users, controllers: {
   #   sessions: 'users/sessions'
   # }
-
+  
 end
-
