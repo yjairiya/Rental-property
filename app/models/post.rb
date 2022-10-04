@@ -4,7 +4,8 @@ class Post < ApplicationRecord
   belongs_to :user
 
   enum status: [:pending, :approved, :rejected ]
-  
+  enum request: [:default, :request, :contact, :cancel ]
+    
   validates :location, presence: true
   validates :size, presence: true
   validates :price, presence: true

@@ -1,27 +1,52 @@
-<h1>Property Posts</h1>
-<% if current_user.role == "owner" || current_user.role == "admin" %>
-<%= "Create a New Post: " %>
-  <%= link_to "<button>Create Now</button>".html_safe, new_post_path%>
+<% if current_user.role == "user" || current_user.role == "admin" %>
+  <h1>Property Posts</h1>
+  
+  <ul>
+    <% post.each do |p| %>
+      <li>
+      <h3> <%= "For" %> <strong><%= link_to p.property_status, p %></strong><br></h3>
+        <%= "Owner" %> <strong><%= link_to p.owner_name, p %><%= " Description" %> <strong><%= link_to p.description, p %></strong>
+        <%= link_to "read more...", p %><br>
+        </strong><br>
+        <% if p.images.attached? %>
+            <% p.images.each do |multiimages| %>
+              <%= image_tag(multiimages,  :size => "260x180") %>
+            <% end %>
+        <%end%><br>
+        <%= "Upload date : " %> <strong><%= link_to p.created_at.strftime("%d-%B-%Y, %l:%M%P"), p %></strong><br>
+      </li><br>
+      <% if current_user.role ==  "admin" %>
+        <h3> <%= "Status : " %> <strong><%= link_to p.status, p %></strong><br></h3>
+        <%= button_to "approved", approve_post_post_path(p.id), { :method => :put } %>
+        <%= button_to "reject", reject_post_post_path(p.id), { :method => :put } %>
+      <%end%>
+    <% end %>
+  </ul>
 <% end %>
-<ul>
-  <% post.each do |p| %>
-    <li>
-     <h3> <%= "For" %> <strong><%= link_to p.property_status, p %></strong><br></h3>
-      <%= "Owner" %> <strong><%= link_to p.owner_name, p %></strong><br>
-      <%= "Description" %> <strong><%= link_to p.description, p %></strong><br>
-      <% if p.images.attached? %>
-          <% p.images.each do |multiimages| %>
-            <%= image_tag(multiimages,  :size => "260x180") %>
-          <% end %>
-      <%end%><br>
-      <%= "posted by : " %> <strong><%= link_to p.user.first_name, p %></strong><br>
-      <%= "Upload date : " %> <strong><%= link_to p.created_at, p %></strong><br>
-    </li><br>
-    <% if current_user.role ==  "admin" %>
-      <%= button_to "reject", reject_post_post_path(p.id), { :method => :put } %>
-      <%= button_to "approved",approve_post_post_path(p.id), { :method => :put } %>
-    <% else %>
-      <% %>
-    <%end%>
+
+<h1>---------------------------------My Property Posts-----------------------------------</h1>
+<% if current_user.role == "owner" || current_user.role == "admin" %>
+  <%= "Create a New Post: " %>
+    <%= link_to "<button>Create Now</button>".html_safe, new_post_path%>
+  <% end %>  
+<% if current_user.role ==  "owner" %>
+  <ul>
+    <% @mypost.each do |p| %>
+      <li>
+      <h3> <%= "Status : " %> <strong><%= link_to p.status, p %></strong><br></h3>
+        <%= "Owner" %> <strong><%= link_to p.owner_name, p %><%= " Description" %> <strong><%= link_to p.description, p %></strong>
+         <%= link_to "read more...", p %><br>
+        <% if p.images.attached? %>
+            <% p.images.each do |multiimages| %>
+              <%= image_tag(multiimages,  :size => "260x180") %>
+            <% end %>
+        <%end%><br>
+        <%= "Upload date : " %> <strong><%= link_to p.created_at.strftime("%d-%B-%Y, %l:%M%P"), p %></strong><br>
+      </li><br>
+      <% if current_user.role ==  "admin" %>
+        <%= button_to "approved", approve_post_post_path(p.id), { :method => :put } %>
+        <%= button_to "reject", reject_post_post_path(p.id), { :method => :put } %>
+      <%end%>
+    <% end %>
+  </ul>
   <% end %>
-</ul>
