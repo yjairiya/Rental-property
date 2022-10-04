@@ -10,6 +10,7 @@ class User < ApplicationRecord
       self.role ||= :user
     end
   end
+  
   # after_initialize :set_default, if :new_record?
   # def set_default
   #   self.role ||= :user 

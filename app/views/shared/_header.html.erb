@@ -8,6 +8,9 @@
   <% else %>
   <%= link_to "SingUp",new_user_registration_path%>
   <% end %>
-  <% end %>
 </nav>
-
+  <% if current_user.role   %>
+    <strong><p  style="text-align:right";> Profile : <%= current_user.first_name%>(<%= current_user.role %>) <%= link_to 'Edit Profile', edit_user_registration_path %></p></strong>
+  <% end %>
+  <br>
+  <% end %>

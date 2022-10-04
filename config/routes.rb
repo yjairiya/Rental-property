@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     member do
       put :reject_post
       put :approve_post
+      put :cantact_request
+      put :cancel_request
     end
   end
   resources :users

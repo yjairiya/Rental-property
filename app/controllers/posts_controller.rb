@@ -5,10 +5,10 @@ class PostsController < ApplicationController
   def index
     @posts = Post.approved.order(created_at: :asc)
     # @image = Post.all.with_attached_imeges
+    @mypost = current_user.posts.all.order(created_at: :desc)
   end
 
   def show
-    @post = Post.find(params[:id])
     # @user = User.find(params[:user_id])
   end
 
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     if @post.save
-      redirect_to @post
+      redirect_to root_path
     else
       # puts @post.errors
       render "new"
@@ -55,6 +55,7 @@ class PostsController < ApplicationController
   def reject_post
     @post.update!(status: 2)
   end
+  
   private
 
   def find_post
