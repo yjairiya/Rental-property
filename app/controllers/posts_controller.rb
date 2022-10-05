@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   # post.image.attach(params[:post][:image])
-  before_action :find_post, only: [:show, :edit, :update, :destroy, :approve_post, :reject_post]
+  before_action :find_post, only: [:show, :edit, :update, :destroy, :approve_post, :reject_post, :send_mail]
 
   def index
     @posts = Post.approved.order(created_at: :asc)
@@ -54,6 +54,12 @@ class PostsController < ApplicationController
 
   def reject_post
     @post.update!(status: 2)
+  end
+
+  def send_mail
+    PostMailer.with(post: @post).new_post_email.deliver
+    flash[:success] = "Thank you for your your Request! We'll get contact you soon!"
+    redirect_to root_path
   end
   
   private
