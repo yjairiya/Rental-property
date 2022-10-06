@@ -1,0 +1,9 @@
+  <h1>Roles</h1>  
+    <ul>
+      <% @roles.each do |a| %>
+        <li>
+          <%= a.first_name %> - <strong><%= a.role %></strong>
+        </li>
+      <% end %>
+    </ul>
+

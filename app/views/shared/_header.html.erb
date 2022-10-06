@@ -1,10 +1,20 @@
 <% if current_user.present? %>
-<nav class="navbar navbar-dark bg-dark"> 
+<nav class="navbar navbar-dark ", style="background-color: #91EDED"> 
+<% if current_user.role == "admin" %>
+  <%= link_to "Home", admins_index_path%>
+<% else %>
   <%= link_to "Home", posts_path%>
+<% end %>
   <%= link_to "Contact",contact_path%>
   <%= link_to "About us",about_path%>
-  <% if current_user.present? %>
-   <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+  <% if current_user.role == "admin" %>
+    <%= link_to "Roles",roles_path%>
+  <% end %>
+  <% if current_user.role == "owner" %>
+    <%= link_to "My Status",status_path%>
+  <% end %>
+    <% if current_user.present? %>
+   <%= link_to "Logout", destroy_user_session_path, method: :delete %>
   <% else %>
   <%= link_to "SingUp",new_user_registration_path%>
   <% end %>
@@ -14,3 +24,5 @@
   <% end %>
   <br>
   <% end %>
+</div>
+

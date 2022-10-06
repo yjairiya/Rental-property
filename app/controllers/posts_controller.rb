@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.approved.order(created_at: :asc)
     # @image = Post.all.with_attached_imeges
-    @mypost = current_user.posts.all.order(created_at: :desc)
+    #@mypost = current_user.posts.all.order(created_at: :desc)
   end
 
   def show
@@ -46,6 +46,10 @@ class PostsController < ApplicationController
     else
       render :show
     end
+  end
+
+  def status
+    @mypost = current_user.posts.all.order(created_at: :desc)
   end
 
   def approve_post
