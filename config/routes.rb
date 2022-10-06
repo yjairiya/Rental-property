@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 
   get '/about', to: "posts#about" 
   get '/contact', to: "posts#contact"
+  get '/roles', to: "admins#roles"
+  get '/status', to: "posts#status"
+
   # devise_for :users, controllers: {
   #   sessions: 'users/sessions'
   # }

@@ -1,0 +1,22 @@
+<% if current_user.role ==  "owner" %>
+  <ul>
+    <% @mypost.each do |p| %>
+      <li>
+      <h3> <%= "Status : " %> <strong><%=p.status%></strong><br></h3>
+        <%= "Owner" %> <strong><%= link_to p.owner_name, p %><br>
+        <% if p.images.attached? %>
+            <% p.images.each do |multiimages| %>
+              <%= image_tag(multiimages,  :size => "260x180") %>
+            <% end %>
+        <%end%><br>
+        <%= "Upload date : " %> <%=p.created_at.strftime("%d-%B-%Y, %l:%M%P")%><br><br>
+      </li>
+      <%= " Description-:" %> <%= p.description%> 
+      <%= link_to "read more...", p %><br>
+      <% if current_user.role ==  "admin" %>
+        <%= button_to "approved", approve_post_post_path(p.id), { :method => :put } %>
+        <%= button_to "reject", reject_post_post_path(p.id), { :method => :put } %>
+      <%end%>
+    <% end %>
+  </ul>
+  <% end %>
