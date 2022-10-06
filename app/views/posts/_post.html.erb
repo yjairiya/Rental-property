@@ -20,6 +20,10 @@
         <%= button_to "approved", approve_post_post_path(p.id), { :method => :put } %>
         <%= button_to "reject", reject_post_post_path(p.id), { :method => :put } %>
       <%end%>
+      <% if current_user.role ==  "user" %>
+        <%= button_to "Contact Request by Gmail", send_mail_post_path(p), { :method => :get } %>
+        <%= button_to "Cancel Request", send_mail_post_path(p), { :method => :get } %>
+      <%end%>
     <% end %>
   </ul>
 <% end %>

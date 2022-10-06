@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       put :reject_post
       put :approve_post
       put :cantact_request
-      put :cancel_request
+      get :send_mail
     end
   end
   resources :users
