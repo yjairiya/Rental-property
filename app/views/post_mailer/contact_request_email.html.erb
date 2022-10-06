@@ -4,11 +4,17 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
+  <p>Current User name: <%= @user.first_name %></p>
+  <p>Current User name: <%= @user.email %></p>
+
+  
     <p>You got a new Property Request from <%= @post.owner_name %>!</p>
     <p>Post details details</p>
     <p>Email: <%= @post.email %></p>
     <p>Phone: <%= @post.phone %></p>
-    
+    <a href="http://localhost:3000/posts/:id/response_mail">
+    Accept
+</a>  
     <p>
     Message:<br>
     ----------
