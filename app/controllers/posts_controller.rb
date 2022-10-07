@@ -54,6 +54,7 @@ class PostsController < ApplicationController
 
   def approve_post
     @post.update!(status: 1)
+    
   end
 
   def reject_post
@@ -63,13 +64,13 @@ class PostsController < ApplicationController
   def send_mail
     PostMailer.with(user: current_user, post: @post).contact_request_email.deliver
     flash[:success] = "Thank you for your your Request! We'll get contact you soon!"
-    redirect_to root_path
+    redirect_to letter_opener_web_path
   end
   
   def response_mail
-    PostMailer.with(post: @post).response_to_user_email.deliver
+    PostMailer.with(user: current_user, post: @post).response_to_user_email.deliver
     flash[:success] = "Thank you for your your Request! We'll get contact you soon!"
-    redirect_to root_path
+    redirect_to letter_opener_web_path
   end
  
   
