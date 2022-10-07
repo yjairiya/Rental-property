@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello Property Owner</h1>
+    <h3>You got a new Property Request! </h3><br>
+    <h3><a href="http://localhost:3000/posts/<%= @post.id %>/response_mail">Accept</a> </h4>
+
+    <p>hi I'm <%= @post.owner_name %> I watch your Property 
+    post and I'm intrested in your property. So please send your Details </p>
+
+    <h3>Customer details </h3>
+    <p>Name: <%= @user.first_name %><%= @user.last_name %></p>
+    <p>Phone: <%= @user.phone %></p>
+    <p>Email: <%= @user.email %></p><br><br><br>
+
+    <h3>Post details </h3>
+    <p>Status: <%= @post.property_status %></p>
+    <p>Owner Name: <%= @post.owner_name %></p>
+    <p>Price: <%= @post.price %></p>
+    <p>description: <%= @post.description %></p>
+
+    
+    <p>Thank you for valuable Time</p>
+  </body>
+</html>

@@ -1,60 +1,60 @@
 
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  username: swgupta
-  password: swgupta
-  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   username: swgupta
+#   password: swgupta
+#   # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-development:
-  <<: *default
-  database: Rental-property_development
-  adapter: postgresql
-  username: swgupta
-  password: swgupta
-  host: localhost
+# development:
+#   <<: *default
+#   database: Rental-property_development
+#   adapter: postgresql
+#   username: swgupta
+#   password: swgupta
+#   host: localhost
   
-test:
-  <<: *default
-  database: Rental-property_test
-  username: swgupta
-  password: swgupta
+# test:
+#   <<: *default
+#   database: Rental-property_test
+#   username: swgupta
+#   password: swgupta
 
 
-production:
-  <<: *default
-  database: Rental-property_production
-  username: swgupta
-  password: swgupta
+# production:
+#   <<: *default
+#   database: Rental-property_production
+#   username: swgupta
+#   password: swgupta
 
 #---------------------------------------
 
 
 
 
-# default: &default
-#   adapter: postgresql
-#   encoding: unicode
-#   username: yogendra123
-#   password: Yogendra@1233
-#   # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: yogendra123
+  password: Yogendra@1233
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-# development:
-#   <<: *default
-#   database: rental-property_development
-#   adapter: postgresql
-#   username: yogendra123
-#   password: Yogendra@1233
-#   host: localhost
+development:
+  <<: *default
+  database: rental-property_development
+  adapter: postgresql
+  username: yogendra123
+  password: Yogendra@1233
+  host: localhost
   
-# test:
-#   <<: *default
-#   database: rental-property_test
-#   username: yogendra123
-#   password: Yogendra@1233
+test:
+  <<: *default
+  database: rental-property_test
+  username: yogendra123
+  password: Yogendra@1233
 
-# production:
-#   <<: *default
-#   database: rental-property_production
-#   username: yogendra123
-#   password: Yogendra@1233
+production:
+  <<: *default
+  database: rental-property_production
+  username: yogendra123
+  password: Yogendra@1233

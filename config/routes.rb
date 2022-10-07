@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       put :approve_post
       put :cantact_request
       get :send_mail
+      get :response_mail
     end
   end
   resources :users
