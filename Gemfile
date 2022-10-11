@@ -78,7 +78,7 @@ group :development, :test do
   gem 'capybara'
   gem "rspec-rails"
   gem 'simplecov'
- 
+  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -93,8 +93,9 @@ group :development do
 end
 
 group :test do
+  gem 'database_cleaner-active_record'
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rails-controller-testing'
 end
-
