@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy, :approve_post, :reject_post, :send_mail, :response_mail]
 
   def index
+    # debugger
     @posts = Post.approved.order(created_at: :asc)
     # @image = Post.all.with_attached_imeges
     #@mypost = current_user.posts.all.order(created_at: :desc)

@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_update_path_for(resource)
-    letter_opener_web_path(resource)
+    root_path
   end
 
   def after_sign_up_path_for(resource)
-    admin_roles_path
+    new_user_session_path
   end
   
   protected
